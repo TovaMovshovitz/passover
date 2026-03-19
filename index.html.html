@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)file:///Users/tova/Downloads/passover-planner%20(3).html -->
+<html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הכנות לפסח</title>
+<link href="./הכנות לפסח_files/css2" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#E4E8EE;--border2:#D0D7E2;
+  --text:#111827;--text2:#4B5563;--text3:#9CA3AF;
+  --blue:#2563EB;--blue-pale:#EFF6FF;--blue-mid:#DBEAFE;
+  --green:#059669;--green-pale:#ECFDF5;
+  --orange:#D97706;--orange-pale:#FFFBEB;
+  --purple:#7C3AED;--purple-pale:#F5F3FF;
+  --pink:#DB2777;--pink-pale:#FDF2F8;
+  --red:#DC2626;
+  --shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.06);
+  --shadow-md:0 4px 20px rgba(0,0,0,.12);
+  --r:10px;
+}
+body{font-family:'Assistant',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* HEADER */
+header{height:52px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
+.brand{font-size:15px;font-weight:700;letter-spacing:-.2px}
+.brand span{color:var(--blue)}
+.hdr-right{display:flex;align-items:center;gap:20px}
+.countdown-chip{background:var(--blue-pale);border:1px solid var(--blue-mid);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--blue);font-weight:600}
+.countdown-chip b{font-size:16px;margin-left:3px}
+.prog-wrap{display:flex;align-items:center;gap:8px}
+.prog-bar{width:80px;height:5px;background:var(--border);border-radius:5px;overflow:hidden}
+.prog-fill{height:100%;background:var(--green);border-radius:5px;transition:width .4s}
+.prog-txt{font-size:12px;color:var(--text2);font-weight:600;min-width:32px}
+
+/* LAYOUT */
+.body{display:flex;flex:1;overflow:hidden}
+
+/* SIDEBAR */
+aside{width:256px;flex-shrink:0;background:var(--white);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.side-top{padding:16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.side-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.input-wrap{position:relative;margin-bottom:8px}
+.input-wrap input{width:100%;border:1.5px solid var(--border);border-radius:var(--r);padding:9px 12px;font-family:'Assistant',sans-serif;font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s,background .15s}
+.input-wrap input:focus{border-color:var(--blue);background:var(--white)}
+.input-wrap input::placeholder{color:var(--text3)}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px}
+.cat-pill{border:1.5px solid var(--border);background:none;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:600;font-family:'Assistant',sans-serif;cursor:pointer;color:var(--text2);transition:all .15s;text-align:center}
+.cat-pill[data-cat="ניקיון"].active{color:var(--blue);background:var(--blue-pale);border-color:var(--blue)}
+.cat-pill[data-cat="בישול"].active{color:var(--orange);background:var(--orange-pale);border-color:var(--orange)}
+.cat-pill[data-cat="קניות"].active{color:var(--purple);background:var(--purple-pale);border-color:var(--purple)}
+.cat-pill[data-cat="תפעולי"].active{color:var(--green);background:var(--green-pale);border-color:var(--green)}
+.cat-pill[data-cat="אחר"].active{color:var(--pink);background:var(--pink-pale);border-color:var(--pink)}
+.btn-add{width:100%;background:var(--blue);color:white;border:none;border-radius:var(--r);padding:9px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-add:hover{background:#1D4ED8;box-shadow:0 3px 10px rgba(37,99,235,.3)}
+
+.side-pool-hdr{padding:12px 16px 6px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center}
+.pool-title{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.pool-count{font-size:11px;color:var(--text3);background:var(--bg);border-radius:10px;padding:1px 7px}
+.pool{flex:1;overflow-y:auto;padding:6px 10px 10px}
+.pool::-webkit-scrollbar{width:3px}
+.pool::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+.chip{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:9px;border:1.5px solid var(--border);background:var(--white);margin-bottom:4px;cursor:grab;user-select:none;transition:all .15s;animation:slideDown .2s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.chip:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateX(-2px)}
+.chip.dragging{opacity:.25}
+.chip-ico{font-size:13px;flex-shrink:0}
+.chip-name{flex:1;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip-tag{font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;flex-shrink:0}
+.chip-actions{display:flex;gap:3px;flex-shrink:0}
+.chip-btn{background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;border-radius:4px;transition:all .15s}
+.chip-btn:hover{color:var(--blue);background:var(--blue-pale)}
+.chip-btn.del:hover{color:var(--red);background:#FEF2F2}
+
+.chip[data-cat="ניקיון"] .chip-tag{background:var(--blue-pale);color:var(--blue)}
+.chip[data-cat="בישול"]  .chip-tag{background:var(--orange-pale);color:var(--orange)}
+.chip[data-cat="קניות"]  .chip-tag{background:var(--purple-pale);color:var(--purple)}
+.chip[data-cat="תפעולי"] .chip-tag{background:var(--green-pale);color:var(--green)}
+.chip[data-cat="אחר"]    .chip-tag{background:var(--pink-pale);color:var(--pink)}
+
+.pool-empty{text-align:center;padding:30px 10px;color:var(--text3);font-size:13px}
+.pool-empty em{display:block;font-size:24px;font-style:normal;margin-bottom:6px}
+
+.side-stats{display:flex;border-top:1px solid var(--border);flex-shrink:0}
+.stat{flex:1;text-align:center;padding:10px 4px;border-left:1px solid var(--border)}
+.stat:last-child{border-left:none}
+.stat-n{font-size:20px;font-weight:700;color:var(--text);line-height:1}
+.stat-l{font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-top:2px}
+
+/* CALENDAR */
+main{flex:1;overflow-y:auto;padding:20px}
+main::-webkit-scrollbar{width:4px}
+main::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-hdr h1{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.cal-hdr p{font-size:11px;color:var(--text3);margin-top:1px}
+.cal-btns{display:flex;gap:6px}
+.btn-primary{background:var(--blue);color:white;border:none;border-radius:var(--r);padding:7px 14px;font-family:'Assistant',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-primary:hover{background:#1D4ED8;box-shadow:0 3px 8px rgba(37,99,235,.25)}
+.btn-outline{background:none;border:1.5px solid var(--border);color:var(--text2);border-radius:var(--r);padding:7px 12px;font-family:'Assistant',sans-serif;font-size:12px;cursor:pointer;transition:all .15s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+
+.dow-header{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
+.dow-cell{text-align:center;font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--text3);padding:4px 0}
+
+.week-row{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
+.week-sep{height:1px;background:var(--border);margin:10px 0 12px;opacity:.5}
+.week-lbl{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px}
+
+/* Day cell */
+.day{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);min-height:108px;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s;overflow:hidden}
+.day.past{background:#FAFAFA;opacity:.6}
+.day.today{border-color:var(--blue);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+.day.shabbat{background:#FDFCFB}
+.day.passover{border-color:#F59E0B;background:#FFFBEB}
+.day.drag-over{border-color:var(--blue)!important;background:var(--blue-pale)!important;box-shadow:0 0 0 2px rgba(37,99,235,.12)!important}
+.day.ghost{opacity:0;pointer-events:none}
+
+.day-hd{padding:6px 8px 4px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--border);flex-shrink:0}
+.day-hd-left{display:flex;flex-direction:column;gap:1px}
+.day-name{font-size:10px;font-weight:700;letter-spacing:.2px;color:var(--text3)}
+.day.today .day-name{color:var(--blue)}
+.day.passover .day-name{color:#92400E}
+.day-heb{font-size:9px;color:var(--text3);opacity:.8;font-weight:400}
+.day.passover .day-heb{color:#92400E}
+.day-n{font-size:13px;font-weight:700;color:var(--text);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;line-height:1;flex-shrink:0}
+.day.today .day-n{background:var(--blue);color:white;font-size:11px}
+.day.passover .day-n{color:#92400E}
+
+.day-body{flex:1;padding:4px;display:flex;flex-direction:column;gap:3px;overflow-y:auto}
+.day-body::-webkit-scrollbar{display:none}
+.drop-hint{flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--border2)}
+
+.ct{border-radius:6px;padding:3px 6px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px;cursor:grab;user-select:none;animation:pop .18s ease;transition:filter .12s;flex-shrink:0}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.ct:hover{filter:brightness(.94)}
+.ct.dragging{opacity:.2}
+.ct.done{opacity:.4}
+.ct.done .ct-n{text-decoration:line-through}
+.ct[data-cat="ניקיון"]{background:var(--blue-pale);color:var(--blue)}
+.ct[data-cat="בישול"] {background:var(--orange-pale);color:var(--orange)}
+.ct[data-cat="קניות"] {background:var(--purple-pale);color:var(--purple)}
+.ct[data-cat="תפעולי"]{background:var(--green-pale);color:var(--green)}
+.ct[data-cat="אחר"]   {background:var(--pink-pale);color:var(--pink)}
+.ct-cb{width:11px;height:11px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;transition:all .12s}
+.ct.done .ct-cb{background:currentColor;color:white}
+.ct-n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ct-edit{background:none;border:none;cursor:pointer;color:inherit;opacity:0;font-size:10px;padding:0;line-height:1;transition:opacity .12s;flex-shrink:0}
+.ct-rm{background:none;border:none;cursor:pointer;color:inherit;opacity:0;font-size:10px;padding:0;line-height:1;transition:opacity .12s;flex-shrink:0}
+.ct:hover .ct-edit,.ct:hover .ct-rm{opacity:.5}
+.ct-edit:hover,.ct-rm:hover{opacity:1!important}
+
+.passover-badge{font-size:9px;font-weight:700;color:#92400E;text-align:center;padding:2px 6px 5px;letter-spacing:.3px}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,.4);backdrop-filter:blur(3px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:16px;padding:24px;width:320px;box-shadow:var(--shadow-md);transform:translateY(10px) scale(.97);transition:transform .2s;position:relative}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-title{font-size:15px;font-weight:700;margin-bottom:18px;color:var(--text)}
+.modal-field{margin-bottom:14px}
+.modal-field label{display:block;font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px}
+.modal-field input{width:100%;border:1.5px solid var(--border);border-radius:var(--r);padding:9px 12px;font-family:'Assistant',sans-serif;font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s}
+.modal-field input:focus{border-color:var(--blue);background:white}
+.modal-cats{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.modal-cat{border:1.5px solid var(--border);background:none;border-radius:8px;padding:6px 8px;font-size:11px;font-weight:600;font-family:'Assistant',sans-serif;cursor:pointer;color:var(--text2);transition:all .15s;text-align:center}
+.modal-cat[data-cat="ניקיון"].active{color:var(--blue);background:var(--blue-pale);border-color:var(--blue)}
+.modal-cat[data-cat="בישול"].active{color:var(--orange);background:var(--orange-pale);border-color:var(--orange)}
+.modal-cat[data-cat="קניות"].active{color:var(--purple);background:var(--purple-pale);border-color:var(--purple)}
+.modal-cat[data-cat="תפעולי"].active{color:var(--green);background:var(--green-pale);border-color:var(--green)}
+.modal-cat[data-cat="אחר"].active{color:var(--pink);background:var(--pink-pale);border-color:var(--pink)}
+.modal-footer{display:flex;gap:8px;margin-top:20px}
+.modal-save{flex:1;background:var(--blue);color:white;border:none;border-radius:var(--r);padding:10px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.modal-save:hover{background:#1D4ED8}
+.modal-cancel{background:none;border:1.5px solid var(--border);color:var(--text2);border-radius:var(--r);padding:10px 16px;font-family:'Assistant',sans-serif;font-size:13px;cursor:pointer;transition:all .15s}
+.modal-cancel:hover{border-color:var(--border2)}
+.modal-close{position:absolute;top:14px;left:14px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:18px;line-height:1;padding:2px;transition:color .15s}
+.modal-close:hover{color:var(--text)}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:#111827;color:white;padding:8px 18px;border-radius:30px;font-size:12px;font-weight:600;box-shadow:var(--shadow-md);transition:transform .25s cubic-bezier(.34,1.56,.64,1);z-index:9999;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">הכנות לפסח <span>תשפ״ו</span></div>
+  <div class="hdr-right">
+    <div class="countdown-chip"><b id="daysLeft">23</b> ימים לפסח</div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+      <span class="prog-txt" id="progTxt">0%</span>
+    </div>
+  </div>
+</header>
+
+<div class="body">
+  <aside>
+    <div class="side-top">
+      <div class="side-lbl">מטלה חדשה</div>
+      <div class="input-wrap"><input id="taskInput" type="text" placeholder="שם המטלה…"></div>
+      <div class="cat-grid" id="catGrid">
+        <button class="cat-pill active" data-cat="ניקיון">🧹 ניקיון</button>
+        <button class="cat-pill" data-cat="בישול">🍳 בישול</button>
+        <button class="cat-pill" data-cat="קניות">🛒 קניות</button>
+        <button class="cat-pill" data-cat="תפעולי">⚙️ תפעולי</button>
+        <button class="cat-pill" data-cat="אחר" style="grid-column:1/-1">📌 אחר</button>
+      </div>
+      <button class="btn-add" onclick="addTask()">+ הוסף מטלה</button>
+    </div>
+    <div class="side-pool-hdr">
+      <span class="pool-title">ממתינות לשיבוץ</span>
+      <span class="pool-count" id="poolCount">5</span>
+    </div>
+    <div class="pool" id="pool">
+      <div class="chip" draggable="true" data-id="1" data-cat="ניקיון">
+        <span class="chip-ico">🧹</span>
+        <span class="chip-name">מקרר</span>
+        <span class="chip-tag">ניקיון</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(1,event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(1,event)" title="מחיקה">✕</button>
+        </div>
+      </div>
+      <div class="chip" draggable="true" data-id="2" data-cat="ניקיון">
+        <span class="chip-ico">🧹</span>
+        <span class="chip-name">תנור</span>
+        <span class="chip-tag">ניקיון</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(2,event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(2,event)" title="מחיקה">✕</button>
+        </div>
+      </div>
+      <div class="chip" draggable="true" data-id="5" data-cat="ניקיון">
+        <span class="chip-ico">🧹</span>
+        <span class="chip-name">שולחן סלון</span>
+        <span class="chip-tag">ניקיון</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(5,event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(5,event)" title="מחיקה">✕</button>
+        </div>
+      </div>
+      <div class="chip" draggable="true" data-id="17" data-cat="ניקיון">
+        <span class="chip-ico">🧹</span>
+        <span class="chip-name">וטרינה</span>
+        <span class="chip-tag">ניקיון</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(17,event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(17,event)" title="מחיקה">✕</button>
+        </div>
+      </div>
+      <div class="chip" draggable="true" data-id="18" data-cat="ניקיון">
+        <span class="chip-ico">🧹</span>
+        <span class="chip-name">ארון סלון</span>
+        <span class="chip-tag">ניקיון</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(18,event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(18,event)" title="מחיקה">✕</button>
+        </div>
+      </div></div>
+    <div class="side-stats">
+      <div class="stat"><div class="stat-n" id="sDone">0</div><div class="stat-l">הושלמו</div></div>
+      <div class="stat"><div class="stat-n" id="sTotal">5</div><div class="stat-l">סה״כ</div></div>
+      <div class="stat"><div class="stat-n" id="sLeft">5</div><div class="stat-l">נותרו</div></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="cal-hdr">
+      <div>
+        <h1>לוח שבועי – הכנות לפסח</h1>
+        <p>גרור מטלות לימים, לחץ ✎ לעריכה</p>
+      </div>
+      <div class="cal-btns">
+        <button class="btn-primary" onclick="autoAssign()">✦ שיבוץ אוטומטי</button>
+        <button class="btn-outline" onclick="clearAll()">נקה שיבוצים</button>
+      </div>
+    </div>
+    <div class="dow-header" id="dowHeader"><div class="dow-cell">א׳</div><div class="dow-cell">ב׳</div><div class="dow-cell">ג׳</div><div class="dow-cell">ד׳</div><div class="dow-cell">ה׳</div><div class="dow-cell">ו׳</div><div class="dow-cell">ש׳</div></div>
+    <div id="calRoot">
+    <div class="week-lbl">9–14 מרץ</div>
+    <div class="week-row"><div class="day ghost"></div><div class="day today" data-key="2026-03-08">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שני</span>
+            <span class="day-heb">20 באדר</span>
+          </div>
+          <span class="day-n">9</span>
+        </div>
+        <div class="day-body" data-key="2026-03-08">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-09">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שלישי</span>
+            <span class="day-heb">21 באדר</span>
+          </div>
+          <span class="day-n">10</span>
+        </div>
+        <div class="day-body" data-key="2026-03-09">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-10">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">רביעי</span>
+            <span class="day-heb">22 באדר</span>
+          </div>
+          <span class="day-n">11</span>
+        </div>
+        <div class="day-body" data-key="2026-03-10">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-11">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">חמישי</span>
+            <span class="day-heb">23 באדר</span>
+          </div>
+          <span class="day-n">12</span>
+        </div>
+        <div class="day-body" data-key="2026-03-11">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-12">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שישי</span>
+            <span class="day-heb">24 באדר</span>
+          </div>
+          <span class="day-n">13</span>
+        </div>
+        <div class="day-body" data-key="2026-03-12">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day shabbat" data-key="2026-03-13">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שבת</span>
+            <span class="day-heb">25 באדר</span>
+          </div>
+          <span class="day-n">14</span>
+        </div>
+        <div class="day-body" data-key="2026-03-13">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div></div><div class="week-sep"></div>
+    <div class="week-lbl">15–21 מרץ</div>
+    <div class="week-row"><div class="day" data-key="2026-03-14">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">ראשון</span>
+            <span class="day-heb">26 באדר</span>
+          </div>
+          <span class="day-n">15</span>
+        </div>
+        <div class="day-body" data-key="2026-03-14">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-15">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שני</span>
+            <span class="day-heb">27 באדר</span>
+          </div>
+          <span class="day-n">16</span>
+        </div>
+        <div class="day-body" data-key="2026-03-15">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-16">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שלישי</span>
+            <span class="day-heb">28 באדר</span>
+          </div>
+          <span class="day-n">17</span>
+        </div>
+        <div class="day-body" data-key="2026-03-16">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-17">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">רביעי</span>
+            <span class="day-heb">29 באדר</span>
+          </div>
+          <span class="day-n">18</span>
+        </div>
+        <div class="day-body" data-key="2026-03-17">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-18">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">חמישי</span>
+            <span class="day-heb">1 בניסן</span>
+          </div>
+          <span class="day-n">19</span>
+        </div>
+        <div class="day-body" data-key="2026-03-18">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-19">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שישי</span>
+            <span class="day-heb">2 בניסן</span>
+          </div>
+          <span class="day-n">20</span>
+        </div>
+        <div class="day-body" data-key="2026-03-19">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day shabbat" data-key="2026-03-20">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שבת</span>
+            <span class="day-heb">3 בניסן</span>
+          </div>
+          <span class="day-n">21</span>
+        </div>
+        <div class="day-body" data-key="2026-03-20">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div></div><div class="week-sep"></div>
+    <div class="week-lbl">22–28 מרץ</div>
+    <div class="week-row"><div class="day" data-key="2026-03-21">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">ראשון</span>
+            <span class="day-heb">4 בניסן</span>
+          </div>
+          <span class="day-n">22</span>
+        </div>
+        <div class="day-body" data-key="2026-03-21">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-22">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שני</span>
+            <span class="day-heb">5 בניסן</span>
+          </div>
+          <span class="day-n">23</span>
+        </div>
+        <div class="day-body" data-key="2026-03-22">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-23">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שלישי</span>
+            <span class="day-heb">6 בניסן</span>
+          </div>
+          <span class="day-n">24</span>
+        </div>
+        <div class="day-body" data-key="2026-03-23">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-24">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">רביעי</span>
+            <span class="day-heb">7 בניסן</span>
+          </div>
+          <span class="day-n">25</span>
+        </div>
+        <div class="day-body" data-key="2026-03-24">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-25">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">חמישי</span>
+            <span class="day-heb">8 בניסן</span>
+          </div>
+          <span class="day-n">26</span>
+        </div>
+        <div class="day-body" data-key="2026-03-25">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-26">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שישי</span>
+            <span class="day-heb">9 בניסן</span>
+          </div>
+          <span class="day-n">27</span>
+        </div>
+        <div class="day-body" data-key="2026-03-26">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day shabbat" data-key="2026-03-27">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שבת</span>
+            <span class="day-heb">10 בניסן</span>
+          </div>
+          <span class="day-n">28</span>
+        </div>
+        <div class="day-body" data-key="2026-03-27">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div></div><div class="week-sep"></div>
+    <div class="week-lbl">29 מרץ – 1 אפר</div>
+    <div class="week-row"><div class="day" data-key="2026-03-28">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">ראשון</span>
+            <span class="day-heb">11 בניסן</span>
+          </div>
+          <span class="day-n">29</span>
+        </div>
+        <div class="day-body" data-key="2026-03-28">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-29">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שני</span>
+            <span class="day-heb">12 בניסן</span>
+          </div>
+          <span class="day-n">30</span>
+        </div>
+        <div class="day-body" data-key="2026-03-29">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day" data-key="2026-03-30">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">שלישי</span>
+            <span class="day-heb">13 בניסן</span>
+          </div>
+          <span class="day-n">31</span>
+        </div>
+        <div class="day-body" data-key="2026-03-30">
+          <div class="drop-hint">גרור</div>
+        </div>
+        
+      </div><div class="day passover" data-key="2026-03-31">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">רביעי</span>
+            <span class="day-heb">14 בניסן</span>
+          </div>
+          <span class="day-n">1</span>
+        </div>
+        <div class="day-body" data-key="2026-03-31">
+          <div class="drop-hint">גרור</div>
+        </div>
+        <div class="passover-badge">🕯 ליל הסדר</div>
+      </div><div class="day ghost"></div><div class="day ghost"></div><div class="day ghost"></div></div></div>
+  </main>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">עריכת מטלה</div>
+    <div class="modal-field">
+      <label>שם</label>
+      <input id="modalName" type="text">
+    </div>
+    <div class="modal-field">
+      <label>קטגוריה</label>
+      <div class="modal-cats" id="modalCats">
+        <button class="modal-cat" data-cat="ניקיון">🧹 ניקיון</button>
+        <button class="modal-cat" data-cat="בישול">🍳 בישול</button>
+        <button class="modal-cat" data-cat="קניות">🛒 קניות</button>
+        <button class="modal-cat" data-cat="תפעולי">⚙️ תפעולי</button>
+        <button class="modal-cat" data-cat="אחר" style="grid-column:1/-1">📌 אחר</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-save" onclick="saveModal()">שמור</button>
+      <button class="modal-cancel" onclick="closeModal()">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PASSOVER = new Date('2026-04-01'); PASSOVER.setHours(19,0,0,0);
+const DOW_FULL = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+const MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+const MS = ['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצ'];
+const CAT_ICO = {ניקיון:'🧹',בישול:'🍳',קניות:'🛒',תפעולי:'⚙️',אחר:'📌'};
+
+// ── Hebrew date converter ──
+function toHebrew(date) {
+  try {
+    return new Intl.DateTimeFormat('he-IL-u-ca-hebrew', {day:'numeric',month:'long'}).format(date);
+  } catch(e) { return ''; }
+}
+
+// ── State ──
+let tasks = JSON.parse(localStorage.getItem('pv4_tasks')||'null') || [
+  {id:1,name:'מקרר',cat:'ניקיון'},{id:2,name:'תנור',cat:'ניקיון'},
+  {id:5,name:'שולחן סלון',cat:'ניקיון'},{id:6,name:'סיום סלון',cat:'ניקיון'},
+  {id:17,name:'וטרינה',cat:'ניקיון'},{id:18,name:'ארון סלון',cat:'ניקיון'},
+];
+let assign = JSON.parse(localStorage.getItem('pv4_assign')||'{}');
+let done = new Set(JSON.parse(localStorage.getItem('pv4_done')||'[]'));
+let selCat = 'ניקיון';
+let drag = null;
+let editId = null;
+let editModalCat = 'ניקיון';
+
+function save(){
+  localStorage.setItem('pv4_tasks',JSON.stringify(tasks));
+  localStorage.setItem('pv4_assign',JSON.stringify(assign));
+  localStorage.setItem('pv4_done',JSON.stringify([...done]));
+}
+function dk(d){return d.toLocaleDateString('sv-SE')}
+function today(){const d=new Date();d.setHours(0,0,0,0);return d}
+function getDays(){const out=[],cur=new Date('2026-03-15');while(cur<=PASSOVER){out.push(new Date(cur));cur.setDate(cur.getDate()+1);}return out}
+function groupWeeks(days){
+  if(!days.length)return[];
+  const pad=[];
+  for(let i=0;i<days[0].getDay();i++) pad.push(null);
+  pad.push(...days);
+  while(pad.length%7) pad.push(null);
+  const w=[];for(let i=0;i<pad.length;i+=7)w.push(pad.slice(i,i+7));return w;
+}
+function getAssigned(){const s=new Set();Object.values(assign).forEach(a=>a.forEach(id=>s.add(id)));return s}
+function updateCountdown(){const d=Math.ceil((PASSOVER-today())/86400000);document.getElementById('daysLeft').textContent=d>0?d:0}
+
+// ── DOW header (once) ──
+document.getElementById('dowHeader').innerHTML =
+  ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'].map(d=>`<div class="dow-cell">${d}</div>`).join('');
+
+// ── Render pool ──
+function renderPool(){
+  const asgn=getAssigned();
+  const pool=tasks.filter(t=>!asgn.has(t.id));
+  document.getElementById('poolCount').textContent=pool.length;
+  const el=document.getElementById('pool');
+  if(!pool.length){el.innerHTML='<div class="pool-empty"><em>🎉</em>הכל שובץ!</div>';}
+  else {
+    el.innerHTML=pool.map(t=>`
+      <div class="chip" draggable="true" data-id="${t.id}" data-cat="${t.cat}">
+        <span class="chip-ico">${CAT_ICO[t.cat]||'📌'}</span>
+        <span class="chip-name">${t.name}</span>
+        <span class="chip-tag">${t.cat}</span>
+        <div class="chip-actions">
+          <button class="chip-btn" onclick="openModal(${t.id},event)" title="עריכה">✎</button>
+          <button class="chip-btn del" onclick="delTask(${t.id},event)" title="מחיקה">✕</button>
+        </div>
+      </div>`).join('');
+    el.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('dragstart',e=>{
+        drag={id:+chip.dataset.id,fromKey:null};
+        e.dataTransfer.effectAllowed='move';
+        e.dataTransfer.setData('text/plain',chip.dataset.id);
+        setTimeout(()=>chip.classList.add('dragging'),0);
+      });
+      chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+    });
+  }
+  document.getElementById('sDone').textContent=done.size;
+  document.getElementById('sTotal').textContent=tasks.length;
+  document.getElementById('sLeft').textContent=tasks.length-done.size;
+  const pct=tasks.length?Math.round(done.size/tasks.length*100):0;
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progTxt').textContent=pct+'%';
+}
+
+// ── Render calendar ──
+function renderCalendar(){
+  const days=getDays(), weeks=groupWeeks(days);
+  const tdk=dk(today()), pdk=dk(PASSOVER);
+  const root=document.getElementById('calRoot');
+
+  root.innerHTML=weeks.map((wk,wi)=>{
+    const real=wk.filter(Boolean);
+    if(!real.length)return'';
+    const f=real[0],l=real[real.length-1];
+    const lbl=f.getMonth()===l.getMonth()
+      ?`${f.getDate()}–${l.getDate()} ${MONTHS[f.getMonth()]}`
+      :`${f.getDate()} ${MS[f.getMonth()]} – ${l.getDate()} ${MS[l.getMonth()]}`;
+
+    const cells=wk.map(d=>{
+      if(!d)return'<div class="day ghost"></div>';
+      const key=dk(d);
+      const isToday=key===tdk, isPast=d<today(), isPsv=key===pdk, isSab=d.getDay()===6;
+      const ts=(assign[key]||[]).map(id=>tasks.find(t=>t.id===id)).filter(Boolean);
+      let cls='day';
+      if(isToday)cls+=' today';else if(isPast)cls+=' past';
+      if(isPsv)cls+=' passover';if(isSab)cls+=' shabbat';
+      const hebDate=toHebrew(d);
+      return `<div class="${cls}" data-key="${key}">
+        <div class="day-hd">
+          <div class="day-hd-left">
+            <span class="day-name">${DOW_FULL[d.getDay()]}</span>
+            <span class="day-heb">${hebDate}</span>
+          </div>
+          <span class="day-n">${d.getDate()}</span>
+        </div>
+        <div class="day-body" data-key="${key}">
+          ${ts.length?ts.map(t=>renderCT(t,key)).join(''):'<div class="drop-hint">גרור</div>'}
+        </div>
+        ${isPsv?'<div class="passover-badge">🕯 ליל הסדר</div>':''}
+      </div>`;
+    }).join('');
+
+    return`${wi>0?'<div class="week-sep"></div>':''}
+    <div class="week-lbl">${lbl}</div>
+    <div class="week-row">${cells}</div>`;
+  }).join('');
+
+  // Drop zones
+  root.querySelectorAll('.day-body').forEach(el=>{
+    el.addEventListener('dragover',e=>{e.preventDefault();el.closest('.day').classList.add('drag-over')});
+    el.addEventListener('dragleave',e=>{if(!el.contains(e.relatedTarget))el.closest('.day').classList.remove('drag-over')});
+    el.addEventListener('drop',e=>{
+      e.preventDefault();
+      el.closest('.day').classList.remove('drag-over');
+      if(!drag)return;
+      const toKey=el.dataset.key;
+      const{id,fromKey}=drag;drag=null;
+      if(fromKey)assign[fromKey]=(assign[fromKey]||[]).filter(x=>x!==id);
+      if(!assign[toKey])assign[toKey]=[];
+      if(!assign[toKey].includes(id))assign[toKey].push(id);
+      save();render();showToast(fromKey?'↔ הועבר':'✓ שובץ!');
+    });
+  });
+  // Cal task drag
+  root.querySelectorAll('.ct').forEach(el=>{
+    el.addEventListener('dragstart',e=>{
+      e.stopPropagation();
+      drag={id:+el.dataset.id,fromKey:el.dataset.from};
+      e.dataTransfer.effectAllowed='move';
+      e.dataTransfer.setData('text/plain',el.dataset.id);
+      setTimeout(()=>el.classList.add('dragging'),0);
+    });
+    el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  });
+}
+
+function renderCT(t,key){
+  const d=done.has(t.id);
+  return`<div class="ct ${d?'done':''}" draggable="true" data-id="${t.id}" data-cat="${t.cat}" data-from="${key}">
+    <div class="ct-cb" onclick="toggleDone(${t.id},event)">${d?'✓':''}</div>
+    <span class="ct-n">${t.name}</span>
+    <button class="ct-edit" onclick="openModal(${t.id},event)" title="עריכה">✎</button>
+    <button class="ct-rm" onclick="rmFromDay(${t.id},'${key}',event)">✕</button>
+  </div>`;
+}
+
+// ── Modal ──
+function openModal(id, e){
+  e && e.stopPropagation();
+  const t=tasks.find(x=>x.id===id);
+  if(!t)return;
+  editId=id; editModalCat=t.cat;
+  document.getElementById('modalName').value=t.name;
+  document.querySelectorAll('.modal-cat').forEach(b=>b.classList.toggle('active',b.dataset.cat===t.cat));
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('modalName').focus(),150);
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  editId=null;
+}
+function saveModal(){
+  const name=document.getElementById('modalName').value.trim();
+  if(!name){showToast('הכנס שם');return;}
+  const t=tasks.find(x=>x.id===editId);
+  if(t){t.name=name;t.cat=editModalCat;}
+  save();render();closeModal();showToast('✓ נשמר!');
+}
+document.getElementById('modalCats').addEventListener('click',e=>{
+  const b=e.target.closest('.modal-cat');if(!b)return;
+  editModalCat=b.dataset.cat;
+  document.querySelectorAll('.modal-cat').forEach(x=>x.classList.toggle('active',x===b));
+});
+document.getElementById('modalName').addEventListener('keydown',e=>{if(e.key==='Enter')saveModal()});
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+
+// ── Actions ──
+function addTask(){
+  const v=document.getElementById('taskInput').value.trim();
+  if(!v){showToast('הכנס שם');return;}
+  tasks.push({id:Date.now(),name:v,cat:selCat});
+  document.getElementById('taskInput').value='';
+  save();render();showToast('נוספה!');
+}
+function delTask(id,e){
+  e.stopPropagation();
+  if(!confirm('למחוק את המטלה?'))return;
+  tasks=tasks.filter(t=>t.id!==id);
+  Object.keys(assign).forEach(k=>assign[k]=assign[k].filter(x=>x!==id));
+  done.delete(id);save();render();
+}
+function rmFromDay(id,key,e){
+  e.stopPropagation();
+  assign[key]=(assign[key]||[]).filter(x=>x!==id);
+  save();render();
+}
+function toggleDone(id,e){
+  e.stopPropagation();
+  if(done.has(id))done.delete(id);else{done.add(id);showToast('✓ הושלם!');}
+  save();render();
+}
+function autoAssign(){
+  const asgn=getAssigned(),unassigned=tasks.filter(t=>!asgn.has(t.id));
+  if(!unassigned.length){showToast('הכל שובץ!');return;}
+  const days=getDays().filter(d=>d>=today());
+  const loads={};days.forEach(d=>loads[dk(d)]=(assign[dk(d)]||[]).length);
+  unassigned.forEach(t=>{
+    const best=days.reduce((a,b)=>loads[dk(a)]<=loads[dk(b)]?a:b);
+    const key=dk(best);
+    if(!assign[key])assign[key]=[];
+    assign[key].push(t.id);loads[key]++;
+  });
+  save();render();showToast(`✦ ${unassigned.length} מטלות שובצו`);
+}
+function clearAll(){
+  if(!confirm('לנקות את כל השיבוצים?'))return;
+  assign={};save();render();showToast('נוקה');
+}
+
+document.getElementById('catGrid').addEventListener('click',e=>{
+  const b=e.target.closest('.cat-pill');if(!b)return;
+  selCat=b.dataset.cat;
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.toggle('active',p===b));
+});
+document.getElementById('taskInput').addEventListener('keydown',e=>{if(e.key==='Enter')addTask()});
+
+let tT;
+function showToast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),1800);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+function render(){renderPool();renderCalendar();}
+updateCountdown();render();
+</script>
+
+
+</body></html>
